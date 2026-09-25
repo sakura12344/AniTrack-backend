@@ -1,0 +1,13 @@
+package com.anitrack.anitrack;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class AnitrackApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
