@@ -1,26 +1,35 @@
 package com.anitrack.anitrack.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 public class User {
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
+    @Setter
     @Column(name = "username", nullable = false, length = 50)
     private String username;
 
+    @Setter
+    @Getter
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "adult_filter", nullable = false, length = 10)
-    private String adultFilter;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "adult_filter", nullable = false, length = 20)
+    private AdultFilter adultFilter = AdultFilter.EXCLUDE_ADULT;
 
     @Column(name = "avatar_url", nullable = false, columnDefinition = "TEXT")
     private String avatarUrl;
@@ -28,8 +37,9 @@ public class User {
     @Column(name = "exclude_unlicensed", nullable = false)
     private Boolean excludeUnlicensed = true;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 20)
-    private String role="user";
+    private UserRole role = UserRole.USER;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -58,30 +68,6 @@ public class User {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -90,11 +76,11 @@ public class User {
         this.password = password;
     }
 
-    public String getAdultFilter() {
+    public AdultFilter getAdultFilter() {
         return adultFilter;
     }
 
-    public void setAdultFilter(String adultFilter) {
+    public void setAdultFilter(AdultFilter adultFilter) {
         this.adultFilter = adultFilter;
     }
 
@@ -114,11 +100,11 @@ public class User {
         this.excludeUnlicensed = excludeUnlicensed;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

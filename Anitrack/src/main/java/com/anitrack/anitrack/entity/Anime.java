@@ -98,6 +98,25 @@ public class Anime {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(
+            name = "tags",
+            columnDefinition = "JSON"
+    )
+    private String tags;
+
+    @Column(name = "popularity")
+    private Integer popularity;
+
+    @Column(name = "trending")
+    private Integer trending;
+
+    @Column(name = "favourites")
+    private Integer favourites;
+
+    @Column(name = "source", length = 50)
+    private String source;
+
     @ManyToMany
     @JoinTable(
             name = "anime_genres",
@@ -265,6 +284,46 @@ public class Anime {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public Integer getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Integer popularity) {
+        this.popularity = popularity;
+    }
+
+    public Integer getTrending() {
+        return trending;
+    }
+
+    public void setTrending(Integer trending) {
+        this.trending = trending;
+    }
+
+    public Integer getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(Integer favourites) {
+        this.favourites = favourites;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public Set<Genre> getGenres() {
